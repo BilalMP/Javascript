@@ -4,13 +4,9 @@ Write a JavaScript program to find duplicate values in a JavaScript array
 
 const duplicates = (arr) => {
     const arrayMap = new Map();
-    for (let i = 0; i < arr.length; i++) {
-        if (arrayMap.has(arr[i])) {
-            arrayMap.set(arr[i], arrayMap.get(arr[i]) + 1);
-        } else {
-            arrayMap.set(arr[i], 1);
-        }
-    }
+    arr.forEach(item => {
+        arrayMap.set(item, (arrayMap.get(item) || 0) + 1);
+    })
     return Array.from(arrayMap.keys()).filter(key => arrayMap.get(key) > 1);
 }
 
