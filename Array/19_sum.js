@@ -8,30 +8,21 @@ Expected Output :
 */
 
 const sumArray = (arr1, arr2) => {
-    if (arr1.length === 0) {
-        return "Array1 is empty";
+    if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+        return "Error: Input must be an array";
     }
-    if (arr2.length === 0) {
-        return "Array2 is empty";
-    }
-    let counter = 0;
-    let result = [];
-    while (counter < arr1.length && counter < arr2.length) {
-        result.push(arr1[counter] + arr2[counter]);
-        counter++;
-    }
-    if (counter === arr1.length) {
-        while (counter < arr2.length) {
-            result.push(arr2[counter]);
-            counter++;
-        }
-    } else if (counter === arr2.length) {
-        while (counter < arr1.length) {
-            result.push(arr1[counter]);
-            counter++;
-        }
+    const maxLength = Math.max(arr1.length, arr2.length);
+    const result = [];
+    for (let i = 0; i < maxLength; i++) {
+        const num1 = 1 <= arr1.length ? arr1[i] : 0;
+        const num2 = 1 <= arr2.length ? arr2[i] : 0;
+        result.push(num1 + num2);
     }
     return result;
 };
 
-console.log(sumArray([1, 0, 2, 3, 4], [3, 5, 6, 7, 8, 13]));
+console.log(sumArray([1, 0, 2, 3, 4], [3, 5, 6, 7, 8, 13])); // [4, 5, 8, 10, 12, 13]
+console.log(sumArray([], [1, 2, 3])); // [1, 2, 3]
+console.log(sumArray([1, 2], [])); // [1, 2]
+console.log(sumArray([], [])); // []
+console.log(sumArray([1, 2], [3])); // [4, 2]
