@@ -11,12 +11,17 @@ const sumArray = (arr1, arr2) => {
     if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
         return "Error: Input must be an array";
     }
-    const maxLength = Math.max(arr1.length, arr2.length);
+    const minLength = Math.min(arr1.length, arr2.length);
     const result = [];
-    for (let i = 0; i < maxLength; i++) {
-        const num1 = 1 <= arr1.length ? arr1[i] : 0;
-        const num2 = 1 <= arr2.length ? arr2[i] : 0;
-        result.push(num1 + num2);
+    let a = 0, b = 0;
+    for (let i = 0; i < minLength; i++) {
+        result.push(arr1[a++] + arr2[b++]);
+    }
+    while (a < arr1.length) {
+        result.push(arr1[a++]);
+    }
+    while (b < arr2.length) {
+        result.push(arr2[b++]);
     }
     return result;
 };
