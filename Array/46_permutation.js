@@ -14,10 +14,25 @@ Expected Output:
 const permutation = (arr) => {
     const result = [];
 
-    const permute = (current, remaining) => {
-        if (remaining.length === 0) {
-            result.push(current);
-        } else {
+    const permute = (currentPermutation, remainingElements) => {
+        if (remainingElements.length === 0) {
+            result.push(currentPermutation);
+            return;
+        } 
+        for (let i = 0; i < remainingElements.length; i++) {
+            const nextPermutation = currentPermutation.concat(remainingElements[i]);
+            const nextRemainingElements = remainingElements
+                .slice(0, i)
+                .concat(remainingElements.slice(i + 1));
+            permute(nextPermutation, nextRemainingElements);
         }
     };
+
+    permute([], arr);
+    return result;
 };
+
+
+console.log(permutation([1, 33, 5]));
+console.log(permutation([1, 3, 5, 7]));
+console.log(permutation([2, 4]));
