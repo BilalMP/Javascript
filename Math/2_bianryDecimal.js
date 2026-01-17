@@ -8,11 +8,13 @@ console.log(bin_to_dec('100'));
 */
 
 const binaryDecimal = (str) => {
-    if (!/^[01]+$/.test(binaryString)) {
-        throw new Error("Invalid binary number. Please provide a binary string.");
+    if (!/^[01]+$/.test(str)) {
+        throw new Error(
+            "Invalid binary number. Please provide a binary string."
+        );
     }
     return parseInt(str, 2);
-}
+};
 
-console.log(binaryDecimal('110011'));
-console.log(binaryDecimal('100'));
+console.log(binaryDecimal("110011"));
+console.log(binaryDecimal("100"));
